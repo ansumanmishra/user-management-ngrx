@@ -17,6 +17,6 @@ export const reducers: ActionReducerMap<State> = {
   user:  UserReducer
 };
 
-export const getUsers = (s: State) => s.user;
+export const getUsers = (state: State) => state.user;
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];

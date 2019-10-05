@@ -1,5 +1,5 @@
 import { initialUserState, User } from './user.state';
-import { UserAction, GET_USERS } from './user.actions';
+import { UserAction, GET_USERS, EDIT_USER } from './user.actions';
 
 export const UserReducer = (state = initialUserState, action: UserAction): User => {
     switch (action.type) {
@@ -7,6 +7,13 @@ export const UserReducer = (state = initialUserState, action: UserAction): User 
             return {
                 name: 'Ansuman',
                 technology: ['angular'],
+            };
+        }
+
+        case EDIT_USER: {
+            return {
+                ...state,
+                name: 'abc',
             };
         }
         default: {

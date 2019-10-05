@@ -2,7 +2,7 @@ import { User } from './state/user.state';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { State, getUsers } from '../reducers';
-import { GetUsers } from './state/user.actions';
+import { GetUsers, AddUser } from './state/user.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -16,6 +16,10 @@ export class UserComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new GetUsers(null));
+
+    setTimeout( () => {
+      this.store.dispatch(new AddUser(null));
+    }, 5000);
     this.store.pipe(select(getUsers)).subscribe(res => {
       console.log(res);
     });
