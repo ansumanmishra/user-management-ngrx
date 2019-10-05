@@ -10,13 +10,13 @@ import { environment } from '../../environments/environment';
 import { UserReducer } from '../user/state/user.reducer';
 
 export interface State {
-  user: User;
+  users: User[];
 }
 
 export const reducers: ActionReducerMap<State> = {
-  user:  UserReducer
+  users:  UserReducer
 };
 
-export const getUsers = (state: State) => state.user;
+export const getUsers = (state: State) => state.users;
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];

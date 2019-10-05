@@ -2,7 +2,7 @@ import { User } from './state/user.state';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { State, getUsers } from '../reducers';
-import { GetUsers, AddUser } from './state/user.actions';
+import { GetUsers, EditUser, AddUser } from './state/user.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,20 +11,24 @@ import { Observable } from 'rxjs';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  user$: Observable<User>;
+  users$: Observable<User[]>;
   constructor(private store: Store<State>) { }
 
   ngOnInit() {
     this.store.dispatch(new GetUsers(null));
+    this.users$ = this.store.pipe(select(getUsers));
+  }
 
-    setTimeout( () => {
-      this.store.dispatch(new AddUser(null));
-    }, 5000);
-    this.store.pipe(select(getUsers)).subscribe(res => {
-      console.log(res);
-    });
+  addUser() {
+    const user: User = {
+      name: 'Joe',
+      technology: ['React'],
+    };
+    this.store.dispatch(new AddUser(user));
+  }
 
-    this.user$ = this.store.pipe(select(getUsers));
+  editUser() {
+    this.store.dispatch(new EditUser({name: 'Ansuman', technology: ['angular', 'React']}));
   }
 
 }

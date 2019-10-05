@@ -3,4 +3,4 @@ export interface User {
     technology: string[];
 }
 
-export const initialUserState: User = {} as User;
+export const initialUserState: User[] = [] as User[];

@@ -1,5 +1,9 @@
-User
-<div *ngIf="user$ | async as user">
-    Name : {{user.name}} <br>
-    Technology: {{user.technology}}
+<button class="btn" (click)="addUser()">Add User</button> | <button class="btn" (click)="editUser()">Edit User</button>
+<div *ngIf="users$ | async as users">
+    <ul>
+        <li *ngFor="let user of users">
+                Name : {{user.name}} <br>
+                Technology: {{user.technology}}
+        </li>
+    </ul>
 </div>
