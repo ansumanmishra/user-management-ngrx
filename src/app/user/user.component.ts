@@ -1,3 +1,4 @@
+import { UserService } from './user.service';
 import { User } from './state/user.state';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
@@ -12,11 +13,13 @@ import { Observable } from 'rxjs';
 })
 export class UserComponent implements OnInit {
   users$: Observable<User[]>;
-  constructor(private store: Store<State>) { }
+  constructor(private store: Store<State>, private userSerice: UserService) { }
 
   ngOnInit() {
     this.store.dispatch(new GetUsers(null));
     this.users$ = this.store.pipe(select(getUsers));
+
+    this.userSerice.users$.subscribe(console.log);
   }
 
   addUser() {
