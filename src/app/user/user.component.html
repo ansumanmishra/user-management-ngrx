@@ -1,9 +1,23 @@
-<button class="btn" (click)="addUser()">Add User</button> | <button class="btn" (click)="editUser()">Edit User</button>
-<div *ngIf="users$ | async as users">
-    <ul>
-        <li *ngFor="let user of users">
-                Name : {{user.name}} <br>
-                Technology: {{user.technology}}
-        </li>
-    </ul>
+<div class="container">
+    <button class="btn btn-primary" (click)="editUser()">Edit
+        User</button>
+        <br><br>
+        <app-add-user>
+        </app-add-user>
+    <div *ngIf="users$ | async as users">
+        <table class="table">
+            <tr>
+                <td>Sl. No.</td>
+                <td>Name</td>
+                <td>Technology</td>
+                <td>Action</td>
+            </tr>
+            <tr *ngFor="let user of users; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.technology}}</td>
+                <td><span (click)="editUser(i)">Edit</span>&nbsp;&nbsp;<span (click)="deleteUser(i)">Delete</span></td>
+            </tr>
+        </table>
+    </div>
 </div>

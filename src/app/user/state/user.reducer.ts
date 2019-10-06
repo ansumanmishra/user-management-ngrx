@@ -1,5 +1,5 @@
 import { initialUserState, User } from './user.state';
-import { UserAction, GET_USERS, EDIT_USER, ADD_USER } from './user.actions';
+import { UserAction, GET_USERS, EDIT_USER, ADD_USER, DELETE_USER } from './user.actions';
 
 export const UserReducer = (state = initialUserState, action: UserAction): any => {
     switch (action.type) {
@@ -21,6 +21,10 @@ export const UserReducer = (state = initialUserState, action: UserAction): any =
 
         case ADD_USER: {
             return [...state, action.payload];
+        }
+
+        case DELETE_USER: {
+          return state.filter( (s, i) => i !== action.payload);
         }
 
         default: {

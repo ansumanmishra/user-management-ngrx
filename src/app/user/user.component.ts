@@ -2,7 +2,7 @@ import { User } from './state/user.state';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { State, getUsers } from '../reducers';
-import { GetUsers, EditUser, AddUser } from './state/user.actions';
+import { GetUsers, EditUser, AddUser, DeleteUser } from './state/user.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -29,6 +29,10 @@ export class UserComponent implements OnInit {
 
   editUser() {
     this.store.dispatch(new EditUser({name: 'Ansuman', technology: ['angular', 'React']}));
+  }
+
+  deleteUser(index: number) {
+    this.store.dispatch(new DeleteUser(index));
   }
 
 }
